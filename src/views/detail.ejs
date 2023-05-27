@@ -15,29 +15,26 @@
     <%- include ('navbar.ejs') %>
         <div class="container">
             <h2 class="pt-5 pb-5 pe-0 ps-0">Detail User</h2>
-            <form>
+            <form action="/update-user" method="post">
+                <input type="hidden" name="id" value="<%= user.id %>">
                 <div class="form-group">
                     <label for="exampleInputEmail1">First Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        value="<%= user.first_name %>">
+                    <input type="text" class="form-control" name="first_name" value="<%= user.first_name %>">
 
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Last Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp "
-                        value="<%= user.last_name %>">
+                    <input type="text" class="form-control" name="last_name" value="<%= user.last_name %>">
 
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
-                    <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp"
-                        value="<%= user.email %>">
+                    <input type="text" class="form-control" name="email" value="<%= user.email %>">
 
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Address</label>
-                    <input type="text" class="form-control" id="exampleInputEmail4" aria-describedby="emailHelp"
-                        value="<%= user.address %>">
+                    <input type="text" class="form-control" name="address" value="<%= user.address %>">
 
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Save change</button>

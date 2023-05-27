@@ -10,9 +10,7 @@ let getHomepage = async (req, res) => {
 }
 
 let getDetailUserPage = async (req, res) => {
-    console.log(req.params); // lấy ra params từ url
     const [rows, fields] = await (await connection).execute('SELECT * FROM `user` WHERE `id` = ?', [req.params.userId]);
-    console.log(rows);
     return res.render("detail.ejs", { user: rows[0] });
 }
 
@@ -20,8 +18,18 @@ let getAboutPage = (req, res) => {
     //logic code here
     return res.send("About page");
 }
+
+let updateUserData = async (req, res) => {
+    console.log("reqbody:" + req.body.first_name);
+    await (await connection).execute('UPDATE `user` SET `first_name` = ? , `last_name` = ? , `email` = ? , `address` = ? WHERE `id` = ?', [req.body.first_name, req.body.last_name, req.body.email, req.body.address, req.body.id]);
+    var redirect = "/detail/" + req.body.id;
+    return res.redirect(redirect);
+}
+
 module.exports = {
     getHomepage: getHomepage,
     getAboutPage: getAboutPage,
-    getDetailUserPage: getDetailUserPage
+    getDetailUserPage: getDetailUserPage,
+    updateUserData: updateUserData
+
 }
